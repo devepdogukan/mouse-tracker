@@ -2,8 +2,6 @@
 
 Mouse Tracker is a lightweight React library that provides components and hooks for easy mouse interaction tracking within your applications. With Mouse Tracker, you can effortlessly monitor mouse positions, visibility, and trigger specific actions based on user interactions. Enhance your user experience by incorporating precise mouse tracking capabilities into your React components.
 
-> Mouse tracker
-
 [![NPM](https://img.shields.io/npm/v/@devdogukan/mouse-tracker.svg)](https://www.npmjs.com/package/@devdogukan/mouse-tracker) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/devepdogukan/mouse-tracker)
 
 ## Install
@@ -14,9 +12,9 @@ npm install @devdogukan/mouse-tracker
 
 ## Usage
 
-- Wrap App component with MouseTrackerProvider.
-- If you want use default tracker just use MouseTrackerProvider.Tracker
-- Thats all
+- Wrap your `App` component with `MouseTrackerProvider`.
+- If you want to use the default tracker, simply include `MouseTrackerProvider.Tracker`.
+- That's it!
 
 ```tsx
 import React from 'react'
@@ -34,25 +32,41 @@ const App = () => {
 
 ## Custom Tracker
 
+To create a custom tracker, follow these steps:
+
+1. Import the `useMouseTracker` hook from `@devdogukan/mouse-tracker`.
+2. Create a functional component for your custom tracker.
+3. Use the `useMouseTracker` hook on a DOM element within your custom tracker component.
+4. Apply the necessary CSS styles for the custom tracker, ensuring it has `position: fixed;`, `top: 0;`, `left: 0;`, and `pointer-events: none;`.
+
+Here's an example of a custom tracker component:
+
 ```tsx
 import { useMouseTracker } from '@devdogukan/mouse-tracker'
 import React, { useRef } from 'react'
 
-const Tracker = () => {
+const CustomTracker = () => {
   const ref = useRef<HTMLDivElement | null>(null)
 
   useMouseTracker(ref)
 
   return (
-    <div className='tracker-wrapper' ref={ref}>
-      <div className='tracker-dot-container'>
-        <div className='circle-dot tracker-dot'></div>
-      </div>
+    <div
+      className='tracker-wrapper'
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        pointerEvents: 'none'
+      }}
+      ref={ref}
+    >
+      {/* Your custom tracker content */}
     </div>
   )
 }
 
-export default Tracker
+export default CustomTracker
 ```
 
 - Change default Tracker inside to MouseTrackerProvider and remove <MouseTrackerProvider.Tracker/>
