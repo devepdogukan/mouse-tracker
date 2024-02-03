@@ -25,12 +25,12 @@ export default [
 				format: "esm",
 				sourcemap: true,
 			},
-			// {
-			// 	file: 'dist/bundle.min.js',
-			// 	format: 'iife',
-			// 	name: 'version',
-			// 	plugins: [terser()]
-			// } 
+			{
+				file: 'dist/bundle.min.js',
+				format: 'iife',
+				name: 'version',
+				plugins: [terser()]
+			} 
 		],
 		plugins: [
 			peerDepsExternal(),
