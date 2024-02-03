@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useState } from 'react'
-import { getState } from '../store'
+import { useTrackerRef } from '../store'
 
 const createCloneElement = (
   circleRef: RefObject<HTMLElement>,
@@ -88,8 +88,7 @@ export const useIntersectionElement = ({
   options?: IntersectionElementOptions
   callback: IntersectionElementCallback
 }) => {
-  const trackerRef = getState().trackerRef
-  const [isMounted, setIsMounted] = useState(false)
+  const trackerRef = useTrackerRef()
   const [observer, setObserver] = useState<MutationObserver | null>(null)
 
   useEffect(() => {
@@ -124,11 +123,11 @@ export const useIntersectionElement = ({
         observer?.disconnect()
       }
 
+      const circleRef = options?.keepInside ? clonedElement : trackerRef.current
+
       callback({
         isIntersection: isInsideRef,
-        circleRef: (options?.keepInside
-          ? clonedElement
-          : trackerRef.current) as HTMLElement,
+        circleRef: circleRef as HTMLElement,
         event
       })
     }
@@ -149,14 +148,5 @@ export const useIntersectionElement = ({
       )
       observer?.disconnect()
     }
-  }, [ref, trackerRef, isMounted, options])
-
-  useEffect(() => {
-    if (ref?.current) return
-
-    setIsMounted(true)
-    return () => {
-      observer?.disconnect()
-    }
-  }, [])
+  }, [ref, trackerRef, options])
 }
