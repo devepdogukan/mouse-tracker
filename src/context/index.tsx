@@ -1,5 +1,4 @@
 import React, { Dispatch, RefObject, SetStateAction, createRef } from 'react'
-import Tracker from '../components/tracker'
 
 type MouseTrackerValue = {
   trackerRef: RefObject<HTMLElement>
@@ -8,11 +7,13 @@ type MouseTrackerValue = {
 
 const MouseTrackerContext = React.createContext<MouseTrackerValue | null>(null)
 
-export const MouseTrackerProvider = ({
-  children
-}: {
-  children: React.ReactNode
-}) => {
+export const MouseTrackerProvider: {
+  ({ children }: { children: React.ReactNode }): React.JSX.Element
+  Tracker?: {
+    (): React.JSX.Element
+    displayName: string
+  }
+} = ({ children }: { children: React.ReactNode }) => {
   const [trackerRef, setTrackerRef] = React.useState(
     createRef() as RefObject<HTMLElement>
   )
@@ -23,8 +24,6 @@ export const MouseTrackerProvider = ({
     </MouseTrackerContext.Provider>
   )
 }
-
-MouseTrackerProvider.Tracker = Tracker
 
 export const useTrackerContext = () => {
   const context = React.useContext(MouseTrackerContext)
