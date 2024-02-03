@@ -1,10 +1,13 @@
-import * as React from 'react'
-import styles from './styles.module.css'
+import Tracker from './components/tracker'
+import React from 'react'
+import { useIntersectionElement as intersection } from './hooks/use-intersection-element'
+import * as tracker from './hooks/use-mouse-tracker'
 
-interface Props {
-  text: string
+const MouseTracker = () => {
+  return <Tracker />
 }
 
-export const ExampleComponent = ({ text }: Props) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export const useIntersectionElement = intersection
+export const useMouseTracker = tracker
+
+export default MouseTracker

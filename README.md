@@ -7,21 +7,17 @@
 ## Install
 
 ```bash
-npm install --save mouse-tracker
+npm install @devdogukan/mouse-tracker
 ```
 
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
+import MouseTracker from '@devdogukan/mouse-tracker'
 
-import MyComponent from 'mouse-tracker'
-import 'mouse-tracker/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const App = () => {
+  return <MouseTracker />
 }
 ```
 
