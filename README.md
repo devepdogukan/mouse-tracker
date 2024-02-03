@@ -12,14 +12,48 @@ npm install @devdogukan/mouse-tracker
 
 ## Usage
 
+- Wrap App component with MouseTrackerProvider.
+- If you want use default tracker just use MouseTrackerProvider.Tracker
+- Thats all
+
 ```tsx
 import React from 'react'
-import MouseTracker from '@devdogukan/mouse-tracker'
+import { MouseTrackerProvider } from '@devdogukan/mouse-tracker'
 
 const App = () => {
-  return <MouseTracker />
+  return (
+    <MouseTrackerProvider>
+      <MouseTrackerProvider.Tracker />
+      ...rest
+    </MouseTrackerProvider>
+  )
 }
 ```
+
+## Custom Tracker
+
+```tsx
+import { useMouseTracker } from '@devdogukan/mouse-tracker'
+import React, { useRef } from 'react'
+
+const Tracker = () => {
+  const ref = useRef<HTMLDivElement | null>(null)
+
+  useMouseTracker(ref)
+
+  return (
+    <div className='tracker-wrapper' ref={ref}>
+      <div className='tracker-dot-container'>
+        <div className='circle-dot tracker-dot'></div>
+      </div>
+    </div>
+  )
+}
+
+export default Tracker
+```
+
+- Change default Tracker inside to MouseTrackerProvider and remove <MouseTrackerProvider.Tracker/>
 
 ## License
 

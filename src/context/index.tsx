@@ -1,17 +1,12 @@
-import React, { RefObject, createRef } from 'react'
+import React, { Dispatch, RefObject, SetStateAction, createRef } from 'react'
 import Tracker from '../components/tracker'
 
-const MouseTrackerContext = React.createContext<{
+type MouseTrackerValue = {
   trackerRef: RefObject<HTMLElement>
-  setTrackerRef: React.Dispatch<
-    React.SetStateAction<React.RefObject<HTMLElement>>
-  >
-}>({
-  trackerRef: createRef() as RefObject<HTMLElement>,
-  setTrackerRef: () => {
-    throw new Error('setTrackerRef function must be overridden')
-  }
-})
+  setTrackerRef: Dispatch<SetStateAction<MouseTrackerValue['trackerRef']>>
+}
+
+const MouseTrackerContext = React.createContext<MouseTrackerValue | null>(null)
 
 export const MouseTrackerProvider = ({
   children

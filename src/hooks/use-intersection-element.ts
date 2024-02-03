@@ -13,7 +13,7 @@ const createCloneElement = (
   element.style.setProperty('top', '0')
   element.style.setProperty('left', '0')
 
-  element.classList.add('circle-clone')
+  element.classList.add(TRACK_CLONE_CLASS.slice(1))
   parentRef.current?.style.setProperty('position', 'relative')
 
   return element
@@ -91,7 +91,8 @@ export const useIntersectionElement = ({
   options?: IntersectionElementOptions
   callback?: IntersectionElementCallback
 }) => {
-  const { trackerRef } = useTrackerContext()
+  const context = useTrackerContext()
+  const trackerRef = context?.trackerRef
   const [observer, setObserver] = useState<MutationObserver | null>(null)
 
   useEffect(() => {

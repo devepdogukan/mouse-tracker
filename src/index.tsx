@@ -3,7 +3,7 @@ import {
   MouseTrackerProvider as provider,
   useTrackerContext as context
 } from './context'
-
+import React from 'react'
 import * as tracker from './hooks/use-mouse-tracker'
 
 export const useIntersectionElement = intersection
