@@ -1,5 +1,3 @@
-// src/context/index.tsx
-
 import React, { Dispatch, RefObject, SetStateAction, createRef } from 'react'
 
 type MouseTrackerValue = {

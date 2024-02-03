@@ -1,13 +1,13 @@
-import { useIntersectionElement as intersection } from './hooks/use-intersection-element'
+import { useIntersectionElement as Intersection } from './hooks/use-intersection-element'
 import {
-  MouseTrackerProvider as provider,
-  useTrackerContext as context
+  MouseTrackerProvider as Provider,
+  useTrackerContext as Context
 } from './context'
-import * as tracker from './hooks/use-mouse-tracker'
-import Tracker from './components/tracker'
+import TrackerHook from './hooks/use-mouse-tracker'
+import DefaultTracker from './components/tracker'
 
-export const useIntersectionElement = intersection
-export const useMouseTracker = tracker
-provider.Tracker = Tracker
-export const MouseTrackerProvider = provider
-export const useTrackerContext = context
+Provider.Tracker = DefaultTracker
+export const useIntersectionElement = Intersection
+export const useMouseTracker = TrackerHook
+export const MouseTrackerProvider = Provider
+export const useTrackerContext = Context

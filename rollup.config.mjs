@@ -29,10 +29,7 @@ export default {
       tsconfig: './tsconfig.json',
       declaration: true
     }),
-    postcss({
-      extract: 'bundle.css', // CSS dosyasını belirtilen dosyaya çıkarır
-      minimize: true
-    }),
+    postcss({ minimize: true }),
     terser()
   ],
   external: ['react', 'react-dom']
