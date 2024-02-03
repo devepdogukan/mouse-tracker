@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect } from 'react'
-import { setState } from '../store'
+import { useTrackerContext } from '../context'
 
 const isInsidePage = (x: number, y: number) => {
   const { innerWidth, innerHeight } = window
@@ -14,6 +14,8 @@ const isInsidePage = (x: number, y: number) => {
 }
 
 const useMouseTracker = (ref: MutableRefObject<HTMLDivElement>) => {
+  const { setTrackerRef } = useTrackerContext()
+
   const handleMouseMove = (event: MouseEvent) => {
     const { width, height } = ref.current.getBoundingClientRect()
     ref.current.style.setProperty(
@@ -35,7 +37,7 @@ const useMouseTracker = (ref: MutableRefObject<HTMLDivElement>) => {
   useEffect(() => {
     if (!ref?.current) return
 
-    setState({ trackerRef: ref })
+    setTrackerRef(ref)
 
     ref.current.style.setProperty('opacity', '0')
     window.addEventListener('mousemove', handleMouseMove)

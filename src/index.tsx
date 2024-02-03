@@ -1,13 +1,12 @@
-import Tracker from './components/tracker'
-import React from 'react'
 import { useIntersectionElement as intersection } from './hooks/use-intersection-element'
-import * as tracker from './hooks/use-mouse-tracker'
+import {
+  MouseTrackerProvider as provider,
+  useTrackerContext as context
+} from './context'
 
-const MouseTracker = () => {
-  return <Tracker />
-}
+import * as tracker from './hooks/use-mouse-tracker'
 
 export const useIntersectionElement = intersection
 export const useMouseTracker = tracker
-
-export default MouseTracker
+export const MouseTrackerProvider = provider
+export const useTrackerContext = context
