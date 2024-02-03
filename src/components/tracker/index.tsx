@@ -1,6 +1,6 @@
 import useMouseTracker from '../../hooks/use-mouse-tracker'
 import React, { useRef } from 'react'
-import styles from './tracker.module.css'
+import './tracker.css'
 import { MutableRefObject } from 'react'
 
 const Tracker = () => {
@@ -9,9 +9,9 @@ const Tracker = () => {
   useMouseTracker(ref as MutableRefObject<HTMLDivElement>)
 
   return (
-    <div className={styles['tracker-wrapper']} ref={ref}>
-      <div className={styles['tracker-dot-container']}>
-        <div className={`circle-dot ${styles['tracker-dot']}`}></div>
+    <div className='tracker-wrapper' ref={ref}>
+      <div className='tracker-dot-container'>
+        <div className='circle-dot tracker-dot'></div>
       </div>
     </div>
   )
