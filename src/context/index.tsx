@@ -9,10 +9,7 @@ const MouseTrackerContext = React.createContext<MouseTrackerValue | null>(null)
 
 export const MouseTrackerProvider: {
   ({ children }: { children: React.ReactNode }): React.JSX.Element
-  Tracker?: {
-    (): React.JSX.Element
-    displayName: string
-  }
+  Tracker: () => React.JSX.Element | null
 } = ({ children }: { children: React.ReactNode }) => {
   const [trackerRef, setTrackerRef] = React.useState(
     createRef() as RefObject<HTMLElement>
@@ -24,6 +21,9 @@ export const MouseTrackerProvider: {
     </MouseTrackerContext.Provider>
   )
 }
+
+// eslint-disable-next-line react/display-name
+MouseTrackerProvider.Tracker = () => null
 
 export const useTrackerContext = () => {
   const context = React.useContext(MouseTrackerContext)

@@ -11,3 +11,4 @@ export const useIntersectionElement = Intersection
 export const useMouseTracker = TrackerHook
 export const MouseTrackerProvider = Provider
 export const useTrackerContext = Context
+export const Tracker = DefaultTracker
